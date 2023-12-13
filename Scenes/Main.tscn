@@ -41,7 +41,8 @@ script = ExtResource("2_moa67")
 
 [node name="DevotionCounter" type="Label" parent="."]
 layout_mode = 0
-offset_left = 414.0
-offset_top = 546.0
-offset_right = 744.0
-offset_bottom = 632.0
+offset_top = 554.0
+offset_right = 1152.0
+offset_bottom = 648.0
+horizontal_alignment = 1
+vertical_alignment = 1

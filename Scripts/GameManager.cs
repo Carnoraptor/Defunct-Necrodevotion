@@ -11,6 +11,7 @@ public partial class GameManager : Node
 		//Get the devotion counter
 		devotionCounter = GetNode<Label>("/root/root/DevotionCounter");
 		
+		//Process producers
 		ProcessCultists();
 	
 		//Connect Buy Function
@@ -20,7 +21,7 @@ public partial class GameManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		devotionCounter.Text = "You have " + Stats.devotion + " devotion!";
+		devotionCounter.Text = "You have " + Mathf.Floor(Stats.devotion) + " Devotion!";
 	}
 	
 	void BuyProducer(String producer)
@@ -31,9 +32,9 @@ public partial class GameManager : Node
 				if (Stats.devotion >= Stats.cultistPrice)
 				{
 					Stats.cultistNum += 1;
-					Stats.devotion -= (int)Stats.cultistPrice;
+					Stats.devotion -= Stats.cultistPrice;
 					Stats.cultistPrice *= 1.5f;
-					GetNode<Button>("/root/root/BuyButtons/Cultist").Text = "Buy Cultists -- " + Mathf.Floor(Stats.cultistPrice).ToString();
+					GetNode<Button>("/root/root/BuyButtons/Cultist").Text = "Buy Cultists -- " + Mathf.Floor(Stats.cultistPrice).ToString() + " Devotion";
 				}
 				break;
 			default:
@@ -43,7 +44,7 @@ public partial class GameManager : Node
 	
 	async void ProcessCultists()
 	{
-		Stats.devotion += (int)(Stats.cultistNum * Stats.cultistOutput);
+		Stats.devotion += (Stats.cultistNum * Stats.cultistOutput);
 		GD.Print(Stats.devotion);
 		await ToSignal(GetTree().CreateTimer(Stats.cultistRate), "timeout");
 		ProcessCultists();
