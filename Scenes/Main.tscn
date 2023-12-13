@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://shj5desltvx4"]
 
-[ext_resource type="Script" path="res://Scripts/TheButton.cs" id="1_xiolg"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="2_tjv1k"]
+[ext_resource type="Script" path="res://Scripts/TheButton.cs" id="1_ry7js"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="2_moa67"]
 
 [node name="root" type="Control"]
 layout_mode = 3
@@ -18,7 +18,7 @@ offset_top = 217.0
 offset_right = 762.0
 offset_bottom = 416.0
 text = "Sacrifice -- +1 Devotion"
-script = ExtResource("1_xiolg")
+script = ExtResource("1_ry7js")
 
 [node name="BuyButtons" type="Control" parent="."]
 anchors_preset = 0
@@ -37,4 +37,4 @@ text = "Buy Cultist -- 10 Devotion"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_tjv1k")
+script = ExtResource("2_moa67")

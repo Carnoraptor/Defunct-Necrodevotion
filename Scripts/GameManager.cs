@@ -9,6 +9,8 @@ public partial class GameManager : Node
 		ProcessCultists();
 	
 		//Connect Buy Function
+		//GetNode<Button>("/root/root/BuyButtons/Cultist").Connect("pressed", this, nameof(BuyProducer), new Godot.Collections.Array() {"cultist"});
+		GetNode<Button>("/root/root/BuyButtons/Cultist")._Pressed += () => BuyProducer("cultist");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,11 +20,17 @@ public partial class GameManager : Node
 	
 	void BuyProducer(String producer)
 	{
-		switch(producer):
+		switch(producer)
 		{
 			case "cultist":
-				if (Stats.devotion => Stats.cultistPrice)
-				Stats.cultistNum += 1;
+				if (Stats.devotion >= Stats.cultistPrice)
+				{
+					Stats.cultistNum += 1;
+					Stats.devotion -= Stats.cultistPrice;
+					Stats.cultistPrice *= 1.5;
+				}
+				break;
+			default:
 				break;
 		}
 	}
@@ -34,4 +42,17 @@ public partial class GameManager : Node
 		await ToSignal(GetTree().CreateTimer(Stats.cultistRate), "timeout");
 		ProcessCultists();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Delegates
+	delegate void BuyCultist();
 }
