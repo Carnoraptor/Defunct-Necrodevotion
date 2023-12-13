@@ -41,17 +41,4 @@ public partial class GameManager : Node
 		await ToSignal(GetTree().CreateTimer(Stats.cultistRate), "timeout");
 		ProcessCultists();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//Delegates
-	delegate void BuyCultist();
 }
