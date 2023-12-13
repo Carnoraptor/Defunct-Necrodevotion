@@ -7,7 +7,7 @@ public static class Stats
 	
 	//Cultist Stats
 	public static int cultistNum = 1;
-	public static float cultistRate = 1;
+	public static float cultistRate = 5;
 	public static float cultistOutput = 5;
 	public static float cultistPrice = 10;
 }

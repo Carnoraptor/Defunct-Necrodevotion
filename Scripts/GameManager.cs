@@ -27,6 +27,7 @@ public partial class GameManager : Node
 					Stats.cultistNum += 1;
 					Stats.devotion -= (int)Stats.cultistPrice;
 					Stats.cultistPrice *= 1.5f;
+					GetNode<Button>("/root/root/BuyButtons/Cultist").Text = "Buy Cultists -- " + Mathf.Floor(Stats.cultistPrice).ToString();
 				}
 				break;
 			default:
