@@ -9,7 +9,6 @@ public partial class GameManager : Node
 		ProcessCultists();
 	
 		//Connect Buy Function
-		//GetNode<Button>("/root/root/BuyButtons/Cultist").Connect("pressed", this, nameof(BuyProducer), new Godot.Collections.Array() {"cultist"});
 		GetNode<Button>("/root/root/BuyButtons/Cultist").Pressed += () => BuyProducer("cultist");
 	}
 
