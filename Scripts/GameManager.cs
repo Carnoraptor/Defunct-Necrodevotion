@@ -10,7 +10,7 @@ public partial class GameManager : Node
 	
 		//Connect Buy Function
 		//GetNode<Button>("/root/root/BuyButtons/Cultist").Connect("pressed", this, nameof(BuyProducer), new Godot.Collections.Array() {"cultist"});
-		GetNode<Button>("/root/root/BuyButtons/Cultist")._Pressed += () => BuyProducer("cultist");
+		GetNode<Button>("/root/root/BuyButtons/Cultist").Pressed += () => BuyProducer("cultist");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,8 +26,8 @@ public partial class GameManager : Node
 				if (Stats.devotion >= Stats.cultistPrice)
 				{
 					Stats.cultistNum += 1;
-					Stats.devotion -= Stats.cultistPrice;
-					Stats.cultistPrice *= 1.5;
+					Stats.devotion -= (int)Stats.cultistPrice;
+					Stats.cultistPrice *= 1.5f;
 				}
 				break;
 			default:
@@ -37,7 +37,7 @@ public partial class GameManager : Node
 	
 	async void ProcessCultists()
 	{
-		Stats.devotion += (int)(Stats.numCultists * Stats.cultistOutput);
+		Stats.devotion += (int)(Stats.cultistNum * Stats.cultistOutput);
 		GD.Print(Stats.devotion);
 		await ToSignal(GetTree().CreateTimer(Stats.cultistRate), "timeout");
 		ProcessCultists();
