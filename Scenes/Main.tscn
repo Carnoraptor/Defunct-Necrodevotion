@@ -38,3 +38,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_moa67")
+
+[node name="DevotionCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 546.0
+offset_right = 744.0
+offset_bottom = 632.0

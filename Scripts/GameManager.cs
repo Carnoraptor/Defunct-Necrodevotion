@@ -3,9 +3,14 @@ using System;
 
 public partial class GameManager : Node
 {
+	Label devotionCounter;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//Get the devotion counter
+		devotionCounter = GetNode<Label>("/root/root/DevotionCounter");
+		
 		ProcessCultists();
 	
 		//Connect Buy Function
@@ -15,6 +20,7 @@ public partial class GameManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		devotionCounter.Text = "You have " + Stats.devotion + " devotion!";
 	}
 	
 	void BuyProducer(String producer)
