@@ -12,10 +12,10 @@ public partial class GameManager : Node
 		devotionCounter = GetNode<Label>("/root/root/DevotionCounter");
 		
 		//Process producers
-		ProcessCultists();
+		ProcessAltars();
 	
 		//Connect Buy Function
-		GetNode<Button>("/root/root/BuyButtons/Cultist").Pressed += () => BuyProducer("cultist");
+		GetNode<TextureButton>("/root/root/BuyButtons/AltarBuy").Pressed += () => BuyProducer("altar");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,13 +28,14 @@ public partial class GameManager : Node
 	{
 		switch(producer)
 		{
-			case "cultist":
-				if (Stats.devotion >= Stats.cultistPrice)
+			case "altar":
+				if (Stats.devotion >= Stats.altarPrice)
 				{
-					Stats.cultistNum += 1;
-					Stats.devotion -= Stats.cultistPrice;
-					Stats.cultistPrice *= 1.5f;
-					GetNode<Button>("/root/root/BuyButtons/Cultist").Text = "Buy Cultists -- " + Mathf.Floor(Stats.cultistPrice).ToString() + " Devotion";
+					Stats.altarNum += 1;
+					Stats.devotion -= Stats.altarPrice;
+					Stats.altarPrice *= 1.5f;
+					GetNode<Label>("/root/root/BuyLabels/AltarLabel").Text = "Buy an Altar -- " + Mathf.Floor(Stats.altarPrice).ToString() + " Dev";
+					GetNode<Label>("/root/root/Counters/Labels/AltarCounterText").Text = Stats.altarNum.ToString();
 				}
 				break;
 			default:
@@ -42,11 +43,11 @@ public partial class GameManager : Node
 		}
 	}
 	
-	async void ProcessCultists()
+	async void ProcessAltars()
 	{
-		Stats.devotion += (Stats.cultistNum * Stats.cultistOutput);
+		Stats.devotion += (Stats.altarNum * Stats.altarOutput);
 		GD.Print(Stats.devotion);
-		await ToSignal(GetTree().CreateTimer(Stats.cultistRate), "timeout");
-		ProcessCultists();
+		await ToSignal(GetTree().CreateTimer(Stats.altarRate), "timeout");
+		ProcessAltars();
 	}
 }

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://shj5desltvx4"]
+[gd_scene load_steps=9 format=3 uid="uid://shj5desltvx4"]
 
 [ext_resource type="Script" path="res://Scripts/TheButton.cs" id="1_ry7js"]
+[ext_resource type="Texture2D" uid="uid://cc0utfdv1qesc" path="res://Art/TheButton.png" id="1_v0xa4"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="2_moa67"]
+[ext_resource type="Texture2D" uid="uid://cw622jxo3ocm4" path="res://Art/TheButtonShade.png" id="2_oc47h"]
+[ext_resource type="Texture2D" uid="uid://dia24asbbirp0" path="res://Art/BuyButton.png" id="4_oqn5k"]
+[ext_resource type="Texture2D" uid="uid://eq50hcu013bo" path="res://Art/ShadedBuyButton.png" id="5_fcx1o"]
+[ext_resource type="Texture2D" uid="uid://cib4wu5fcxxl1" path="res://Art/HighlightBuyButton.png" id="6_nnxci"]
+[ext_resource type="Texture2D" uid="uid://bhbxfbrtl65cd" path="res://Art/NumBox.png" id="7_ro6jg"]
 
 [node name="root" type="Control"]
 layout_mode = 3
@@ -11,13 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TheButton" type="Button" parent="."]
+[node name="TheButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 381.0
-offset_top = 217.0
-offset_right = 762.0
-offset_bottom = 416.0
-text = "Sacrifice -- +1 Devotion"
+offset_left = 393.0
+offset_top = 165.0
+offset_right = 521.0
+offset_bottom = 293.0
+scale = Vector2(2.741, 2.7)
+texture_normal = ExtResource("1_v0xa4")
+texture_pressed = ExtResource("2_oc47h")
 script = ExtResource("1_ry7js")
 
 [node name="BuyButtons" type="Control" parent="."]
@@ -25,18 +33,72 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Cultist" type="Button" parent="BuyButtons"]
+[node name="AltarBuy" type="TextureButton" parent="BuyButtons"]
 layout_mode = 0
-offset_left = 842.0
-offset_top = 5.0
-offset_right = 1144.0
-offset_bottom = 87.0
-text = "Buy Cultist -- 10 Devotion"
+offset_left = 906.0
+offset_right = 997.0
+offset_bottom = 29.0
+scale = Vector2(2.7, 2.7)
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
 
-[node name="GameManager" type="Control" parent="."]
+[node name="BuyLabels" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AltarLabel" type="Label" parent="BuyLabels"]
+layout_mode = 0
+offset_left = 917.0
+offset_top = 11.0
+offset_right = 1141.0
+offset_bottom = 68.0
+text = "Buy an Altar -- 10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Counters" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BGs" type="Control" parent="Counters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AltarCounterBG" type="TextureRect" parent="Counters/BGs"]
+layout_mode = 0
+offset_left = 853.0
+offset_top = 14.0
+offset_right = 893.0
+offset_bottom = 54.0
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("7_ro6jg")
+
+[node name="Labels" type="Control" parent="Counters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AltarCounterText" type="Label" parent="Counters/Labels"]
+layout_mode = 0
+offset_left = 861.0
+offset_top = 22.0
+offset_right = 901.0
+offset_bottom = 62.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameManager" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 574.0
+offset_top = -65.0
+offset_right = 614.0
+offset_bottom = -25.0
 script = ExtResource("2_moa67")
 
 [node name="DevotionCounter" type="Label" parent="."]
