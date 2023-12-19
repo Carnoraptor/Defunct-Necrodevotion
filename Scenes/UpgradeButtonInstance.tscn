@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcp68eadeifca"]
+
+[ext_resource type="Texture2D" uid="uid://bhbxfbrtl65cd" path="res://Art/NumBox.png" id="1_g3dl7"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButton.cs" id="2_xdxht"]
+
+[node name="UpgradeButton" type="TextureButton"]
+offset_right = 21.0
+offset_bottom = 21.0
+scale = Vector2(2.7, 2.7)
+texture_normal = ExtResource("1_g3dl7")
+script = ExtResource("2_xdxht")

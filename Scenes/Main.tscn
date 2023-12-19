@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://shj5desltvx4"]
+[gd_scene load_steps=13 format=3 uid="uid://shj5desltvx4"]
 
 [ext_resource type="Script" path="res://Scripts/TheButton.cs" id="1_ry7js"]
 [ext_resource type="Texture2D" uid="uid://cc0utfdv1qesc" path="res://Art/TheButton.png" id="1_v0xa4"]
+[ext_resource type="Texture2D" uid="uid://eilxryf8gqys" path="res://Art/TheButtonShaded.png" id="2_ije7d"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="2_moa67"]
-[ext_resource type="Texture2D" uid="uid://cw622jxo3ocm4" path="res://Art/TheButtonShade.png" id="2_oc47h"]
 [ext_resource type="Texture2D" uid="uid://dia24asbbirp0" path="res://Art/BuyButton.png" id="4_oqn5k"]
+[ext_resource type="Script" path="res://Scripts/UpgradeManager.cs" id="5_1yt70"]
 [ext_resource type="Texture2D" uid="uid://eq50hcu013bo" path="res://Art/ShadedBuyButton.png" id="5_fcx1o"]
 [ext_resource type="Texture2D" uid="uid://cib4wu5fcxxl1" path="res://Art/HighlightBuyButton.png" id="6_nnxci"]
 [ext_resource type="Texture2D" uid="uid://bhbxfbrtl65cd" path="res://Art/NumBox.png" id="7_ro6jg"]
+[ext_resource type="Texture2D" uid="uid://c33bcspj7kjfv" path="res://Art/Background.png" id="9_ktrpv"]
+[ext_resource type="Script" path="res://Scripts/CultNameGenerator.cs" id="10_ww8i2"]
+[ext_resource type="Script" path="res://Scripts/help.cs" id="12_7go7e"]
 
 [node name="root" type="Control"]
 layout_mode = 3
@@ -19,79 +23,14 @@ grow_vertical = 2
 
 [node name="TheButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 393.0
-offset_top = 165.0
-offset_right = 521.0
-offset_bottom = 293.0
-scale = Vector2(2.741, 2.7)
-texture_normal = ExtResource("1_v0xa4")
-texture_pressed = ExtResource("2_oc47h")
-script = ExtResource("1_ry7js")
-
-[node name="BuyButtons" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AltarBuy" type="TextureButton" parent="BuyButtons"]
-layout_mode = 0
-offset_left = 906.0
-offset_right = 997.0
-offset_bottom = 29.0
+offset_left = 468.0
+offset_top = 21.0
+offset_right = 548.0
+offset_bottom = 101.0
 scale = Vector2(2.7, 2.7)
-texture_normal = ExtResource("4_oqn5k")
-texture_pressed = ExtResource("5_fcx1o")
-texture_hover = ExtResource("6_nnxci")
-
-[node name="BuyLabels" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AltarLabel" type="Label" parent="BuyLabels"]
-layout_mode = 0
-offset_left = 917.0
-offset_top = 11.0
-offset_right = 1141.0
-offset_bottom = 68.0
-text = "Buy an Altar -- 10 Dv"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Counters" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BGs" type="Control" parent="Counters"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AltarCounterBG" type="TextureRect" parent="Counters/BGs"]
-layout_mode = 0
-offset_left = 853.0
-offset_top = 14.0
-offset_right = 893.0
-offset_bottom = 54.0
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("7_ro6jg")
-
-[node name="Labels" type="Control" parent="Counters"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AltarCounterText" type="Label" parent="Counters/Labels"]
-layout_mode = 0
-offset_left = 861.0
-offset_top = 22.0
-offset_right = 901.0
-offset_bottom = 62.0
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = ExtResource("1_v0xa4")
+texture_pressed = ExtResource("2_ije7d")
+script = ExtResource("1_ry7js")
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0
@@ -101,10 +40,490 @@ offset_right = 614.0
 offset_bottom = -25.0
 script = ExtResource("2_moa67")
 
+[node name="UpgradeManager" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_1yt70")
+
 [node name="DevotionCounter" type="Label" parent="."]
 layout_mode = 0
-offset_top = 554.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 790.0
+offset_top = 31.0
+offset_right = 17393.0
+offset_bottom = 2283.0
+scale = Vector2(0.0123529, 0.0140287)
+theme_override_font_sizes/font_size = 1651
+text = "You Have X Devotion"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -3
+layout_mode = 0
+offset_right = 425.0
+offset_bottom = 240.0
+scale = Vector2(2.7, 2.7)
+mouse_filter = 2
+texture = ExtResource("9_ktrpv")
+
+[node name="VersionNumber" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 555.0
+offset_top = 536.0
+offset_right = 907.0
+offset_bottom = 640.0
+scale = Vector2(0.996733, 1.00244)
+text = "Pre-Alpha -- Version 1.0.0
+Click the pentagram to appease Nyarlathotep
+Achieve greater devotion to the dark gods
+Tech test build -- content soon"
+
+[node name="CultName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 1097.0
+offset_bottom = 123.0
+scale = Vector2(0.1779, 0.272248)
+theme_override_font_sizes/font_size = 86
+text = "The Cult of the Final Straw"
+script = ExtResource("10_ww8i2")
+
+[node name="StoreScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.17
+offset_left = 772.0
+offset_top = 154.0
+offset_right = 812.0
+offset_bottom = 194.0
+scale = Vector2(4.08772, 3.23504)
+horizontal_scroll_mode = 0
+
+[node name="StoreContainer" type="VBoxContainer" parent="StoreScroll"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="AltarBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="AltarLabel" type="Label" parent="StoreScroll/StoreContainer/AltarBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4088
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Altar
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TempleBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="TempleLabel" type="Label" parent="StoreScroll/StoreContainer/TempleBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.4741
+offset_top = -11.6426
+offset_right = 4328.53
+offset_bottom = 634.357
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Temple
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="LibraryBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="LibraryLabel" type="Label" parent="StoreScroll/StoreContainer/LibraryBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Library
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ComplexBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="ComplexLabel" type="Label" parent="StoreScroll/StoreContainer/ComplexBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Complex
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CathedralBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="CathedralLabel" type="Label" parent="StoreScroll/StoreContainer/CathedralBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Cathedral
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MonumentBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="MonumentLabel" type="Label" parent="StoreScroll/StoreContainer/MonumentBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Monument
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ZigguratBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="ZigguratLabel" type="Label" parent="StoreScroll/StoreContainer/ZigguratBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Ziggurat
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="GateBuy" type="TextureButton" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_oqn5k")
+texture_pressed = ExtResource("5_fcx1o")
+texture_hover = ExtResource("6_nnxci")
+metadata/_edit_use_anchors_ = true
+
+[node name="GateLabel" type="Label" parent="StoreScroll/StoreContainer/GateBuy"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.4526
+offset_top = -11.4087
+offset_right = 4327.55
+offset_bottom = 634.591
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0312448, 0.0355612)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 162
+text = "Gate
+10 Dv"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="BuyButtons" type="Control" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuyLabels" type="Control" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Counters" type="Control" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BGs" type="Control" parent="StoreScroll/StoreContainer/Counters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AltarCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 14.0
+offset_right = 1101.0
+offset_bottom = 35.0
+texture = ExtResource("7_ro6jg")
+
+[node name="TempleCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 92.0
+offset_right = 1101.0
+offset_bottom = 113.0
+texture = ExtResource("7_ro6jg")
+
+[node name="LibraryCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 173.0
+offset_right = 1101.0
+offset_bottom = 194.0
+texture = ExtResource("7_ro6jg")
+
+[node name="ComplexCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 254.0
+offset_right = 1101.0
+offset_bottom = 275.0
+texture = ExtResource("7_ro6jg")
+
+[node name="CathedralCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 335.0
+offset_right = 1101.0
+offset_bottom = 356.0
+texture = ExtResource("7_ro6jg")
+
+[node name="MonumentCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 416.0
+offset_right = 1101.0
+offset_bottom = 437.0
+texture = ExtResource("7_ro6jg")
+
+[node name="ZigguratCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 496.0
+offset_right = 1101.0
+offset_bottom = 517.0
+texture = ExtResource("7_ro6jg")
+
+[node name="GateCounterBG" type="TextureRect" parent="StoreScroll/StoreContainer/Counters/BGs"]
+layout_mode = 2
+offset_left = 853.0
+offset_top = 577.0
+offset_right = 1101.0
+offset_bottom = 598.0
+texture = ExtResource("7_ro6jg")
+
+[node name="Labels" type="Control" parent="StoreScroll/StoreContainer/Counters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AltarCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 22.0
+offset_right = 1109.0
+offset_bottom = 48.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TempleCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 101.0
+offset_right = 1109.0
+offset_bottom = 127.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LibraryCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 181.0
+offset_right = 1109.0
+offset_bottom = 207.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComplexCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 262.0
+offset_right = 1109.0
+offset_bottom = 288.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CathedralCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 343.0
+offset_right = 1109.0
+offset_bottom = 369.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MonumentCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 424.0
+offset_right = 1109.0
+offset_bottom = 450.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZigguratCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 504.0
+offset_right = 1109.0
+offset_bottom = 530.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GateCounterText" type="Label" parent="StoreScroll/StoreContainer/Counters/Labels"]
+layout_mode = 2
+offset_left = 861.0
+offset_top = 585.0
+offset_right = 1109.0
+offset_bottom = 611.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="StoreScroll/StoreContainer"]
+layout_mode = 2
+text = "balls"
+
+[node name="UpgradeButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_7go7e")
