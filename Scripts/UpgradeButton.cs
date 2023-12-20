@@ -15,7 +15,7 @@ public partial class UpgradeButton : TextureButton
 	{
 		upgradeIdentity = ug;
 		//This should work but it doesn't, angry
-		//TextureNormal = ug.upgradeIcon;
+		TextureNormal = ug.upgradeIcon;
 	}
 	
 	public void OnPressed()

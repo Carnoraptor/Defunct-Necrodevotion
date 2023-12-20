@@ -74,6 +74,7 @@ public partial class UpgradeManager : Node
 			var instance = Activator.CreateInstance(derivedType) as Upgrade;
 			if (instance != null)
 			{
+				instance.LoadUpgrade();
 				upgradeList.Add(instance);
 			}
 		}
@@ -117,8 +118,8 @@ public partial class UpgradeManager : Node
 	GetNode("/root/root/UpgradeButtons").AddChild(button);
 	button.LoadUpgradeIdentity(ug);
 	upgradeButtons.Add(button);
-	int x = ((upgradeButtons.Count % 5) * 32) + 5;
-	float y = (Mathf.Floor((float)upgradeButtons.Count / 5f)) + 6.3f;
+	int x = ((upgradeButtons.Count % 5) * 32) - 28;
+	float y = (Mathf.Floor((float)upgradeButtons.Count / 5f)) + 6.45f;
 	button.Position = new Vector2(x * 2, y * 25);
 	}
 }
