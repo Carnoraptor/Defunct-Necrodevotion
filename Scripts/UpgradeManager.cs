@@ -118,8 +118,8 @@ public partial class UpgradeManager : Node
 	GetNode("/root/root/UpgradeButtons").AddChild(button);
 	button.LoadUpgradeIdentity(ug);
 	upgradeButtons.Add(button);
-	int x = ((upgradeButtons.Count % 5) * 32) - 28;
-	float y = (Mathf.Floor((float)upgradeButtons.Count / 5f)) + 6.45f;
+	int x = ((upgradeButtons.Count % 6) * 32) - 28;
+	float y = (Mathf.Floor((float)upgradeButtons.Count / 7f)) + 6.45f;
 	button.Position = new Vector2(x * 2, y * 25);
 	}
 }
@@ -147,16 +147,16 @@ public class AltarProductionI : Upgrade
 {
 	public override void LoadUpgrade()
 	{
-		upgradeName = "Inscription I";
+		upgradeName = "Bloodsoaking I";
 		upgradeText = "Your altars produce twice as much Devotion.";
-		upgradeTip = "Dark text etched into your altars improves sacrificial capabilities and harvests emotion from sacrifices";
-		upgradePrice = 2;
+		upgradeTip = "Thorough sacrifical bloodstaining improves potency and capacity of altars.";
+		upgradePrice = 200;
 		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG1Box.png");
 	}
 	
 	public override bool isAvailable()
 	{
-		if (Stats.altarNum >= 2)
+		if (Stats.altarNum >= 10)
 		{
 			return true;
 		}
@@ -175,16 +175,16 @@ public class AltarProductionII : Upgrade
 {
 	public override void LoadUpgrade()
 	{
-		upgradeName = "Inscription II";
+		upgradeName = "Bloodsoaking II";
 		upgradeText = "Your altars produce twice as much Devotion.";
-		upgradeTip = "Dark text etched into your altars improves sacrificial capabilities and harvests emotion from sacrifices";
-		upgradePrice = 4;
-		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG1Box.png");
+		upgradeTip = "Blood for the altars is extracted from veins rather than from general areas, leading to more sacred rituals.";
+		upgradePrice = 1250;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG2Box.png");
 	}
 	
 	public override bool isAvailable()
 	{
-		if (Stats.altarNum >= 3)
+		if (Stats.altarNum >= 20)
 		{
 			return true;
 		}
@@ -196,5 +196,229 @@ public class AltarProductionII : Upgrade
 		Stats.devotionPerSecond -= Stats.altarOutput * Stats.altarNum;
 		Stats.altarOutput *= 2;
 		Stats.devotionPerSecond += Stats.altarOutput * Stats.altarNum;
+	}
+}
+
+public class AltarProductionIII : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Bloodsoaking III";
+		upgradeText = "Your altars produce twice as much Devotion.";
+		upgradeTip = "Lifeblood offerings result in doubled optimization as the blood is extracted from sacrifices themselves.";
+		upgradePrice = 4250;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG3Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.altarNum >= 30)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.altarOutput * Stats.altarNum;
+		Stats.altarOutput *= 2;
+		Stats.devotionPerSecond += Stats.altarOutput * Stats.altarNum;
+	}
+}
+
+public class AltarProductionIV : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Bloodsoaking IV";
+		upgradeText = "Your altars produce twice as much Devotion.";
+		upgradeTip = "Traditional structures of sacrifice are restructured into hyperefficient methods of constant ritual execution.";
+		upgradePrice = 10000;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG4Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.altarNum >= 40)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.altarOutput * Stats.altarNum;
+		Stats.altarOutput *= 2;
+		Stats.devotionPerSecond += Stats.altarOutput * Stats.altarNum;
+	}
+}
+
+public class AltarProductionV : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Bloodsoaking V";
+		upgradeText = "Your altars produce twice as much Devotion.";
+		upgradeTip = "By sacrificing hundreds of souls per hour, a direct connection to the Elder Plane is formed.";
+		upgradePrice = 95000;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/AltarUG5Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.altarNum >= 50)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.altarOutput * Stats.altarNum;
+		Stats.altarOutput *= 2;
+		Stats.devotionPerSecond += Stats.altarOutput * Stats.altarNum;
+	}
+}
+
+public class TempleProductionI : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Consecration I";
+		upgradeText = "Your temples produce twice as much Devotion.";
+		upgradeTip = "Daily rituals to bless the temple improve favor and efficiency, leading to increased devotion production.";
+		upgradePrice = 600;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/TempleUG1Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.templeNum >= 10)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.templeOutput * Stats.templeNum;
+		Stats.templeOutput *= 2;
+		Stats.devotionPerSecond += Stats.templeOutput * Stats.templeNum;
+	}
+}
+
+public class TempleProductionII : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Consecration II";
+		upgradeText = "Your temples produce twice as much Devotion.";
+		upgradeTip = "Mass distribution of religious substance creates a veritable sphere of influence.";
+		upgradePrice = 2400;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/TempleUG2Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.templeNum >= 20)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.templeOutput * Stats.templeNum;
+		Stats.templeOutput *= 2;
+		Stats.devotionPerSecond += Stats.templeOutput * Stats.templeNum;
+	}
+}
+
+public class TempleProductionIII : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Consecration III";
+		upgradeText = "Your temples produce twice as much Devotion.";
+		upgradeTip = "Specific border-based sacrifice creates a intense aura of zeal.";
+		upgradePrice = 16000;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/TempleUG3Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.templeNum >= 30)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.templeOutput * Stats.templeNum;
+		Stats.templeOutput *= 2;
+		Stats.devotionPerSecond += Stats.templeOutput * Stats.templeNum;
+	}
+}
+
+public class TempleProductionIV : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Consecration IV";
+		upgradeText = "Your temples produce twice as much Devotion.";
+		upgradeTip = "Constant human sacrifice accelerates prayer and strengthens extraplanar connection.";
+		upgradePrice = 48000;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/TempleUG4Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.templeNum >= 40)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.templeOutput * Stats.templeNum;
+		Stats.templeOutput *= 2;
+		Stats.devotionPerSecond += Stats.templeOutput * Stats.templeNum;
+	}
+}
+
+public class TempleProductionV : Upgrade
+{
+	public override void LoadUpgrade()
+	{
+		upgradeName = "Consecration V";
+		upgradeText = "Your temples produce twice as much Devotion.";
+		upgradeTip = "Ultraconcentrated mass blessing enables direct transmission of god-essence and thus direct worship.";
+		upgradePrice = 200000;
+		upgradeIcon = GD.Load<Texture2D>("res://Art/UpgradeIcons/TempleUG5Box.png");
+	}
+	
+	public override bool isAvailable()
+	{
+		if (Stats.templeNum >= 50)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public override void UpgradeEffect()
+	{
+		Stats.devotionPerSecond -= Stats.templeOutput * Stats.templeNum;
+		Stats.templeOutput *= 2;
+		Stats.devotionPerSecond += Stats.templeOutput * Stats.templeNum;
 	}
 }
